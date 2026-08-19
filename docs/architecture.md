@@ -1,7 +1,5 @@
 # Arquitectura
 
-Ver el plan completo en `/Users/minigarci/.claude/plans/me-gustaia-crear-algo-memoized-snail.md` para el contexto y las decisiones de diseño (agregador Open Banking, backend, fases de construcción).
-
 ## Fase 1 (actual): app iOS local, sin backend
 
 - **SwiftUI + MVVM**, target mínimo iOS 17.
