@@ -197,9 +197,10 @@ struct StatisticsView: View {
                         .onDelete(perform: deleteTransactions)
                     }
                 }
+                .listRowInsets(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                 .listRowBackground(Color.appCard)
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.plain)
             .navigationBarTitleDisplayMode(.inline)
             .themedListBackground()
             .toolbar {
