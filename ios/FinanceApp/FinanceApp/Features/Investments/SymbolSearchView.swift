@@ -38,9 +38,11 @@ struct SymbolSearchView: View {
                             .buttonStyle(.plain)
                         }
                     }
+                    .listRowBackground(Color.appCard)
                 } else if results.isEmpty && !isSearching {
                     Text("Sin resultados para \"\(query)\"")
                         .foregroundStyle(.secondary)
+                        .listRowBackground(Color.appCard)
                 }
 
                 if !trimmedQuery.isEmpty {
@@ -53,9 +55,11 @@ struct SymbolSearchView: View {
                         }
                         .buttonStyle(.plain)
                     }
+                    .listRowBackground(Color.appCard)
                 }
             }
             .navigationTitle("Buscar símbolo")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cerrar") { dismiss() }

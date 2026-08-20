@@ -28,6 +28,9 @@ final class Account {
     var currentBalance: Decimal
     var currency: String
     var isManual: Bool
+    // Stored default (not just an init default) so SwiftData's lightweight migration can
+    // backfill this on rows that existed before the field was added.
+    var colorHex: String = "#34C759"
     var createdAt: Date
 
     @Relationship(deleteRule: .cascade, inverse: \MoneyTransaction.account)
@@ -52,6 +55,7 @@ final class Account {
         currentBalance: Decimal = 0,
         currency: String = "EUR",
         isManual: Bool = true,
+        colorHex: String = "#34C759",
         createdAt: Date = .now
     ) {
         self.id = id
@@ -61,6 +65,7 @@ final class Account {
         self.currentBalance = currentBalance
         self.currency = currency
         self.isManual = isManual
+        self.colorHex = colorHex
         self.createdAt = createdAt
     }
 }

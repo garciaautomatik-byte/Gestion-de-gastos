@@ -9,6 +9,7 @@ struct AddAccountView: View {
     @State private var type: AccountType = .checking
     @State private var initialBalanceText: String = ""
     @State private var currency: String = "EUR"
+    @State private var colorHex: String = appColorPalette[0]
 
     var body: some View {
         NavigationStack {
@@ -24,8 +25,16 @@ struct AddAccountView: View {
                         .keyboardType(.decimalPad)
                     TextField("Moneda", text: $currency)
                 }
+                .listRowBackground(Color.appCard)
+
+                Section("Color") {
+                    ColorSwatchGrid(selection: $colorHex)
+                        .padding(.vertical, 4)
+                }
+                .listRowBackground(Color.appCard)
             }
             .navigationTitle("Nueva cuenta")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }
@@ -44,7 +53,8 @@ struct AddAccountView: View {
             name: name,
             type: type,
             currentBalance: balance,
-            currency: currency.isEmpty ? "EUR" : currency
+            currency: currency.isEmpty ? "EUR" : currency,
+            colorHex: colorHex
         )
         modelContext.insert(account)
         try? modelContext.save()

@@ -16,6 +16,10 @@ final class Category {
     var icon: String
     var colorHex: String
     var isSystemDefault: Bool
+    // Given stored defaults (not just init defaults) so SwiftData's lightweight migration can
+    // backfill these on rows that existed before the fields were added.
+    var isHidden: Bool = false
+    var sortOrder: Int = 0
     var parentCategory: Category?
 
     @Relationship(deleteRule: .nullify, inverse: \MoneyTransaction.category)
@@ -31,6 +35,8 @@ final class Category {
         icon: String = "circle.fill",
         colorHex: String = "#8E8E93",
         isSystemDefault: Bool = false,
+        isHidden: Bool = false,
+        sortOrder: Int = 0,
         parentCategory: Category? = nil
     ) {
         self.id = id
@@ -39,6 +45,8 @@ final class Category {
         self.icon = icon
         self.colorHex = colorHex
         self.isSystemDefault = isSystemDefault
+        self.isHidden = isHidden
+        self.sortOrder = sortOrder
         self.parentCategory = parentCategory
     }
 }

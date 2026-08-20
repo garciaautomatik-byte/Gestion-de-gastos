@@ -44,8 +44,10 @@ struct AddHoldingView: View {
                 } footer: {
                     Text("Usa la lupa para buscar el símbolo exacto (los resultados se priorizan según el tipo de activo elegido arriba), o escríbelo a mano si ya lo conoces. La moneda se actualiza sola la primera vez que se consulte el precio.")
                 }
+                .listRowBackground(Color.appCard)
             }
             .navigationTitle("Nueva posición")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }

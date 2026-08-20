@@ -27,11 +27,11 @@ enum DefaultCategories {
         let existingCount = (try? context.fetchCount(descriptor)) ?? 0
         guard existingCount == 0 else { return }
 
-        for item in expense {
-            context.insert(Category(name: item.name, kind: .expense, icon: item.icon, colorHex: item.colorHex, isSystemDefault: true))
+        for (index, item) in expense.enumerated() {
+            context.insert(Category(name: item.name, kind: .expense, icon: item.icon, colorHex: item.colorHex, isSystemDefault: true, sortOrder: index))
         }
-        for item in income {
-            context.insert(Category(name: item.name, kind: .income, icon: item.icon, colorHex: item.colorHex, isSystemDefault: true))
+        for (index, item) in income.enumerated() {
+            context.insert(Category(name: item.name, kind: .income, icon: item.icon, colorHex: item.colorHex, isSystemDefault: true, sortOrder: index))
         }
         try? context.save()
     }

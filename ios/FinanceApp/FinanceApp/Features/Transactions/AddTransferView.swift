@@ -13,6 +13,10 @@ struct AddTransferView: View {
     @State private var date: Date = .now
     @State private var note: String = ""
 
+    init(preselectedSourceAccount: Account? = nil) {
+        _sourceAccount = State(initialValue: preselectedSourceAccount)
+    }
+
     private var eligibleAccounts: [Account] {
         accounts.filter { $0.type != .investmentManual }
     }
@@ -25,6 +29,7 @@ struct AddTransferView: View {
                         Text("Necesitas al menos dos cuentas para hacer una transferencia.")
                             .foregroundStyle(.secondary)
                     }
+                    .listRowBackground(Color.appCard)
                 } else {
                     Section("Desde") {
                         Picker("Cuenta origen", selection: $sourceAccount) {
@@ -34,6 +39,7 @@ struct AddTransferView: View {
                             }
                         }
                     }
+                    .listRowBackground(Color.appCard)
 
                     Section("Hacia") {
                         Picker("Cuenta destino", selection: $destinationAccount) {
@@ -43,6 +49,7 @@ struct AddTransferView: View {
                             }
                         }
                     }
+                    .listRowBackground(Color.appCard)
 
                     Section("Detalles") {
                         TextField("Importe", text: $amountText)
@@ -50,9 +57,11 @@ struct AddTransferView: View {
                         DatePicker("Fecha", selection: $date, displayedComponents: .date)
                         TextField("Nota (opcional)", text: $note)
                     }
+                    .listRowBackground(Color.appCard)
                 }
             }
             .navigationTitle("Transferencia")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }

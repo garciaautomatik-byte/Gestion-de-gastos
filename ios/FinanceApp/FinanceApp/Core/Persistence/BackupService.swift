@@ -10,6 +10,41 @@ private struct AccountDTO: Codable {
     var currency: String
     var isManual: Bool
     var createdAt: Date
+    var colorHex: String
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, type, ibanLast4, currentBalance, currency, isManual, createdAt, colorHex
+    }
+
+    init(
+        id: UUID, name: String, type: String, ibanLast4: String?, currentBalance: Decimal,
+        currency: String, isManual: Bool, createdAt: Date, colorHex: String
+    ) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.ibanLast4 = ibanLast4
+        self.currentBalance = currentBalance
+        self.currency = currency
+        self.isManual = isManual
+        self.createdAt = createdAt
+        self.colorHex = colorHex
+    }
+
+    // Custom decode so a backup exported before `colorHex` existed still loads, with a
+    // sensible fallback color, instead of failing decode entirely.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        type = try container.decode(String.self, forKey: .type)
+        ibanLast4 = try container.decodeIfPresent(String.self, forKey: .ibanLast4)
+        currentBalance = try container.decode(Decimal.self, forKey: .currentBalance)
+        currency = try container.decode(String.self, forKey: .currency)
+        isManual = try container.decode(Bool.self, forKey: .isManual)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        colorHex = try container.decodeIfPresent(String.self, forKey: .colorHex) ?? "#34C759"
+    }
 }
 
 private struct CategoryDTO: Codable {
@@ -19,7 +54,42 @@ private struct CategoryDTO: Codable {
     var icon: String
     var colorHex: String
     var isSystemDefault: Bool
+    var isHidden: Bool
+    var sortOrder: Int
     var parentCategoryID: UUID?
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, kind, icon, colorHex, isSystemDefault, isHidden, sortOrder, parentCategoryID
+    }
+
+    init(
+        id: UUID, name: String, kind: String, icon: String, colorHex: String,
+        isSystemDefault: Bool, isHidden: Bool, sortOrder: Int, parentCategoryID: UUID?
+    ) {
+        self.id = id
+        self.name = name
+        self.kind = kind
+        self.icon = icon
+        self.colorHex = colorHex
+        self.isSystemDefault = isSystemDefault
+        self.isHidden = isHidden
+        self.sortOrder = sortOrder
+        self.parentCategoryID = parentCategoryID
+    }
+
+    // Custom decode so a backup exported before `isHidden`/`sortOrder` existed still loads.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        kind = try container.decode(String.self, forKey: .kind)
+        icon = try container.decode(String.self, forKey: .icon)
+        colorHex = try container.decode(String.self, forKey: .colorHex)
+        isSystemDefault = try container.decode(Bool.self, forKey: .isSystemDefault)
+        isHidden = try container.decodeIfPresent(Bool.self, forKey: .isHidden) ?? false
+        sortOrder = try container.decodeIfPresent(Int.self, forKey: .sortOrder) ?? 0
+        parentCategoryID = try container.decodeIfPresent(UUID.self, forKey: .parentCategoryID)
+    }
 }
 
 private struct MoneyTransactionDTO: Codable {
@@ -116,7 +186,8 @@ enum BackupService {
                     currentBalance: account.currentBalance,
                     currency: account.currency,
                     isManual: account.isManual,
-                    createdAt: account.createdAt
+                    createdAt: account.createdAt,
+                    colorHex: account.colorHex
                 )
             },
             categories: try context.fetch(FetchDescriptor<Category>()).map { category in
@@ -127,6 +198,8 @@ enum BackupService {
                     icon: category.icon,
                     colorHex: category.colorHex,
                     isSystemDefault: category.isSystemDefault,
+                    isHidden: category.isHidden,
+                    sortOrder: category.sortOrder,
                     parentCategoryID: category.parentCategory?.id
                 )
             },
@@ -231,6 +304,7 @@ enum BackupService {
                 currentBalance: dto.currentBalance,
                 currency: dto.currency,
                 isManual: dto.isManual,
+                colorHex: dto.colorHex,
                 createdAt: dto.createdAt
             )
             context.insert(account)
@@ -245,7 +319,9 @@ enum BackupService {
                 kind: CategoryKind(rawValue: dto.kind) ?? .expense,
                 icon: dto.icon,
                 colorHex: dto.colorHex,
-                isSystemDefault: dto.isSystemDefault
+                isSystemDefault: dto.isSystemDefault,
+                isHidden: dto.isHidden,
+                sortOrder: dto.sortOrder
             )
             context.insert(category)
             categoriesByID[dto.id] = category

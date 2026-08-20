@@ -19,8 +19,10 @@ struct InvestmentsListView: View {
                     }
                 }
                 .onDelete(perform: deleteHoldings)
+                .listRowBackground(Color.appCard)
             }
             .navigationTitle("Inversiones")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     EditButton()

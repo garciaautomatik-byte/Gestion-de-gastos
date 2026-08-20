@@ -56,6 +56,7 @@ struct HoldingDetailView: View {
                         .foregroundStyle(.secondary)
                 }
             }
+            .listRowBackground(Color.appCard)
 
             Section("Operaciones") {
                 ForEach(sortedTransactions) { tx in
@@ -63,8 +64,10 @@ struct HoldingDetailView: View {
                 }
                 .onDelete(perform: deleteTransactions)
             }
+            .listRowBackground(Color.appCard)
         }
         .navigationTitle(holding.ticker)
+        .themedListBackground()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(role: .destructive) {

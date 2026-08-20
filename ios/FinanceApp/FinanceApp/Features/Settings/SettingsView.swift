@@ -17,6 +17,15 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
+                    NavigationLink {
+                        CategoriesSettingsView()
+                    } label: {
+                        Label("Categorías", systemImage: "tag")
+                    }
+                }
+                .listRowBackground(Color.appCard)
+
+                Section {
                     Button {
                         export()
                     } label: {
@@ -25,6 +34,7 @@ struct SettingsView: View {
                 } footer: {
                     Text("Genera un archivo con todas tus cuentas, movimientos, categorías, inversiones y recurrentes. Guárdalo en iCloud Drive, Archivos o donde prefieras para poder recuperarlo en otro móvil.")
                 }
+                .listRowBackground(Color.appCard)
 
                 Section {
                     Button {
@@ -35,8 +45,10 @@ struct SettingsView: View {
                 } footer: {
                     Text("Importar sustituye todos los datos actuales de la app por los del archivo elegido.")
                 }
+                .listRowBackground(Color.appCard)
             }
             .navigationTitle("Ajustes")
+            .themedListBackground()
             .fileExporter(
                 isPresented: $isExporting,
                 document: exportedFile,

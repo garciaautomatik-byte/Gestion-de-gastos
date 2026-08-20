@@ -17,8 +17,10 @@ struct RecurringTransactionsListView: View {
                 }
             }
             .onDelete(perform: deleteRules)
+            .listRowBackground(Color.appCard)
         }
         .navigationTitle("Recurrentes")
+        .themedListBackground()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {

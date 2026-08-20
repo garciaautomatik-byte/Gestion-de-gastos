@@ -45,12 +45,14 @@ struct AddInvestmentTransactionView: View {
                     Text("Dividendo").tag(InvestmentTransactionType.dividend)
                 }
                 .pickerStyle(.segmented)
+                .listRowBackground(Color.appCard)
 
                 if eligibleAccounts.isEmpty {
                     Section {
                         Text("Necesitas una cuenta bancaria para registrar el pago o el ingreso de esta operación. Añádela primero en la pestaña Cuentas.")
                             .foregroundStyle(.secondary)
                     }
+                    .listRowBackground(Color.appCard)
                 } else {
                     Section {
                         Picker("Cuenta de pago", selection: $fundingAccount) {
@@ -62,6 +64,7 @@ struct AddInvestmentTransactionView: View {
                     } footer: {
                         Text(fundingAccountFooter)
                     }
+                    .listRowBackground(Color.appCard)
                 }
 
                 if type != .dividend {
@@ -71,6 +74,7 @@ struct AddInvestmentTransactionView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .listRowBackground(Color.appCard)
                 }
 
                 if usesAmountEntry {
@@ -101,18 +105,24 @@ struct AddInvestmentTransactionView: View {
                             }
                         }
                     }
+                    .listRowBackground(Color.appCard)
                 } else {
                     TextField("Cantidad", text: $quantityText)
                         .keyboardType(.decimalPad)
+                        .listRowBackground(Color.appCard)
                     TextField("Precio por unidad", text: $priceText)
                         .keyboardType(.decimalPad)
+                        .listRowBackground(Color.appCard)
                 }
 
                 TextField("Comisiones", text: $feesText)
                     .keyboardType(.decimalPad)
+                    .listRowBackground(Color.appCard)
                 DatePicker("Fecha", selection: $date, displayedComponents: .date)
+                    .listRowBackground(Color.appCard)
             }
             .navigationTitle("Nueva operación")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }

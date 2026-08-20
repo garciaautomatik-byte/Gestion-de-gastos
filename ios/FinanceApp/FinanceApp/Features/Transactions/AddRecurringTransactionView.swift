@@ -28,7 +28,7 @@ struct AddRecurringTransactionView: View {
     }
 
     private var filteredCategories: [Category] {
-        categories.filter { $0.kind == kind }
+        categories.filter { $0.kind == kind && (!$0.isHidden || $0.id == selectedCategory?.id) }
     }
 
     private var eligibleAccounts: [Account] {
@@ -45,6 +45,7 @@ struct AddRecurringTransactionView: View {
                     }
                     .pickerStyle(.segmented)
                 }
+                .listRowBackground(Color.appCard)
 
                 Section("Detalles") {
                     TextField("Descripción", text: $descriptionText)
@@ -56,6 +57,7 @@ struct AddRecurringTransactionView: View {
                         }
                     }
                 }
+                .listRowBackground(Color.appCard)
 
                 Section("Cuenta") {
                     Picker("Cuenta", selection: $selectedAccount) {
@@ -65,6 +67,7 @@ struct AddRecurringTransactionView: View {
                         }
                     }
                 }
+                .listRowBackground(Color.appCard)
 
                 Section("Categoría") {
                     Picker("Categoría", selection: $selectedCategory) {
@@ -74,6 +77,7 @@ struct AddRecurringTransactionView: View {
                         }
                     }
                 }
+                .listRowBackground(Color.appCard)
 
                 Section {
                     Text(existingRule == nil
@@ -82,8 +86,10 @@ struct AddRecurringTransactionView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+                .listRowBackground(Color.appCard)
             }
             .navigationTitle(existingRule == nil ? "Nuevo recurrente" : "Editar recurrente")
+            .themedListBackground()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }
