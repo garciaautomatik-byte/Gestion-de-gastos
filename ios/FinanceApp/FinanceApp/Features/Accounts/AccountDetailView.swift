@@ -152,14 +152,7 @@ private struct AccountHeaderCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
-                Circle()
-                    .fill(.white.opacity(0.25))
-                    .frame(width: 32, height: 32)
-                    .overlay {
-                        Text(account.name.prefix(1).uppercased())
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                    }
+                BankLogoView(name: account.name, fallbackColor: .white.opacity(0.25), diameter: 32)
                 Text(account.name)
                     .font(.subheadline.bold())
                     .foregroundStyle(.white.opacity(0.9))

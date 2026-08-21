@@ -10,12 +10,21 @@ struct AddAccountView: View {
     @State private var initialBalanceText: String = ""
     @State private var currency: String = "EUR"
     @State private var colorHex: String = appColorPalette[0]
+    @State private var colorManuallySet = false
+
+    private var manualColorBinding: Binding<String> {
+        Binding(get: { colorHex }, set: { colorHex = $0; colorManuallySet = true })
+    }
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Detalles") {
                     TextField("Nombre", text: $name)
+                        .onChange(of: name) { _, newValue in
+                            guard !colorManuallySet, let brand = BankBrandCatalog.match(for: newValue) else { return }
+                            colorHex = brand.colorHex
+                        }
                     Picker("Tipo", selection: $type) {
                         ForEach(AccountType.allCases.filter { $0 != .investmentManual }) { accountType in
                             Text(accountType.displayName).tag(accountType)
@@ -28,8 +37,13 @@ struct AddAccountView: View {
                 .listRowBackground(Color.appCard)
 
                 Section("Color") {
-                    ColorSwatchGrid(selection: $colorHex)
+                    ColorSwatchGrid(selection: manualColorBinding)
                         .padding(.vertical, 4)
+                    if let brand = BankBrandCatalog.match(for: name), colorHex == brand.colorHex {
+                        Label("Color de \(brand.name) detectado automáticamente", systemImage: "checkmark.seal.fill")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .listRowBackground(Color.appCard)
             }

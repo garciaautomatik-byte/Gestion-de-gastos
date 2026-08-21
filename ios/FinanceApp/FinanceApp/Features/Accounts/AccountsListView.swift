@@ -240,19 +240,20 @@ private struct AccountCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             HStack(spacing: 10) {
-                ZStack {
-                    Circle().fill(.white.opacity(0.22))
-                    if page.account != nil {
-                        Text(title.prefix(1).uppercased())
-                            .font(.subheadline.bold())
-                            .foregroundStyle(.white)
+                Group {
+                    if let account = page.account {
+                        BankLogoView(name: account.name, fallbackColor: .white.opacity(0.22), diameter: 34)
                     } else {
-                        Image(systemName: "creditcard.fill")
-                            .font(.subheadline)
-                            .foregroundStyle(.white)
+                        Circle()
+                            .fill(.white.opacity(0.22))
+                            .overlay {
+                                Image(systemName: "creditcard.fill")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.white)
+                            }
+                            .frame(width: 34, height: 34)
                     }
                 }
-                .frame(width: 34, height: 34)
 
                 Text(title)
                     .font(.subheadline.bold())

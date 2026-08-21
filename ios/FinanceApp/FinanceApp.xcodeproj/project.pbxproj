@@ -43,6 +43,7 @@
 		B28703EC820CE207A9F85DA1 /* AddEditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF8B78EB73058A4B45345F /* AddEditCategoryView.swift */; };
 		B2B6716AF395C3FC7A244F07 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99475A88636860071E701DC5 /* EditAccountView.swift */; };
 		B9561BF8038687A06276CF0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBDD4F9A9A9CDB22A655B952 /* Assets.xcassets */; };
+		BE92916EFD4A0693AB1F30AE /* BankBrandCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95E9B2B772B012DB4E88A4 /* BankBrandCatalog.swift */; };
 		C1DA19C03E7B069BE05E801F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8640ACA7B8FB8AFE31126 /* Category.swift */; };
 		D040DECCB778D49402A64968 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17000715C5C27048037E679 /* StatisticsView.swift */; };
 		D0628EB901C7CA0207AEB6FC /* RecurringTransactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77BB21E8295DFABED40CFC /* RecurringTransactionsListView.swift */; };
@@ -54,6 +55,7 @@
 		E8B0199AC6F6833DE06D6B28 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF37F106EC5D398E263BCB4 /* RootView.swift */; };
 		F0D041453D83FC83E5C94AED /* DefaultCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45770272CF22BF92ED1FDB48 /* DefaultCategories.swift */; };
 		F2669A9EF767110B45B2E5B8 /* InvestmentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28986144E7CDBFF0B9867F3B /* InvestmentTransaction.swift */; };
+		F7579FB9422A835748339727 /* BankLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B566C6D08C80B02E33C19383 /* BankLogoView.swift */; };
 		FB29E38CC97F18B09E65B4E0 /* CategoriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC0BD0206FCD16F80472697 /* CategoriesSettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,7 @@
 		01D64359717692A687259EEB /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
 		06EABB330704C0A0AF7C9CF1 /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidget.swift; sourceTree = "<group>"; };
 		0A77BB21E8295DFABED40CFC /* RecurringTransactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTransactionsListView.swift; sourceTree = "<group>"; };
+		0A95E9B2B772B012DB4E88A4 /* BankBrandCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankBrandCatalog.swift; sourceTree = "<group>"; };
 		1A2FAE17E68663FCC531FA26 /* BackupDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupDocument.swift; sourceTree = "<group>"; };
 		28986144E7CDBFF0B9867F3B /* InvestmentTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentTransaction.swift; sourceTree = "<group>"; };
 		3A395C952D0BE940AC946EC2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		ADB8640ACA7B8FB8AFE31126 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		ADC0BD0206FCD16F80472697 /* CategoriesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSettingsView.swift; sourceTree = "<group>"; };
 		B17000715C5C27048037E679 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		B566C6D08C80B02E33C19383 /* BankLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankLogoView.swift; sourceTree = "<group>"; };
 		BB32AB2FBA80391FB853A7F2 /* DashboardCustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCustomizeView.swift; sourceTree = "<group>"; };
 		BD99ABDE88A909B912BB12A4 /* AddTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransferView.swift; sourceTree = "<group>"; };
 		BDF37F106EC5D398E263BCB4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 		A0931A759900F7DED6452C55 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				0A95E9B2B772B012DB4E88A4 /* BankBrandCatalog.swift */,
+				B566C6D08C80B02E33C19383 /* BankLogoView.swift */,
 				40A4BA962F60E06734B3DBC0 /* Color+Hex.swift */,
 				882719B92C4B7CB89D94843A /* ColorSwatchGrid.swift */,
 				A22F3DBA5BEAD56C4A046FA9 /* Theme.swift */,
@@ -430,6 +436,8 @@
 				0E01E1AD3C7CC9DE0070AF9D /* AppModelContainer.swift in Sources */,
 				6ABE2A0363C54D897613017E /* BackupDocument.swift in Sources */,
 				A3A0D517CC5D89534A7ECDAC /* BackupService.swift in Sources */,
+				BE92916EFD4A0693AB1F30AE /* BankBrandCatalog.swift in Sources */,
+				F7579FB9422A835748339727 /* BankLogoView.swift in Sources */,
 				FB29E38CC97F18B09E65B4E0 /* CategoriesSettingsView.swift in Sources */,
 				C1DA19C03E7B069BE05E801F /* Category.swift in Sources */,
 				AD6CF4F0296313D735AB027D /* CategoryEntity.swift in Sources */,

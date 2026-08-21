@@ -418,14 +418,7 @@ private struct AccountPickerCard: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 10) {
-                Circle()
-                    .fill(Color(hex: account.colorHex))
-                    .frame(width: 44, height: 44)
-                    .overlay {
-                        Text(account.name.prefix(1).uppercased())
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                    }
+                BankLogoView(name: account.name, fallbackColor: Color(hex: account.colorHex), diameter: 44)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(account.name)
                         .font(.subheadline.weight(.semibold))
